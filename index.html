@@ -3,364 +3,606 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>To my labidabs 💖</title>
+  <title>Happy Monthsary, My Love</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #ffe4ec, #e8f3ff);
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-      overflow: hidden;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .container {
-      max-width: 600px;
+    body {
+      background: linear-gradient(135deg, #ffd1dc, #ffb6c1, #ff69b4);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      overflow-x: hidden;
+      transition: background 1s ease;
+    }
+
+    /* ===== INTRO PAGE ===== */
+    .intro-page {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff8da1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      z-index: 10;
+      transition: opacity 1s ease;
+    }
+
+    .intro-content {
+      animation: fadeInUp 1.5s ease;
+    }
+
+    .intro-page h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .intro-page p {
+      font-size: 1.3rem;
+      margin-bottom: 30px;
+      max-width: 400px;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .intro-page button {
+      background-color: white;
+      color: #ff69b4;
+      font-size: 1.2rem;
+      border: none;
+      padding: 12px 35px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.3s ease, background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .intro-page button:hover {
+      transform: scale(1.1);
+      background-color: #ffe4ec;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    /* ===== MAIN CONTAINER ===== */
+    .container {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .container.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    header {
+      margin-bottom: 30px;
+      position: relative;
     }
 
     h1 {
-      font-size: 2.5em;
-      color: #ff5fa2;
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
       margin-bottom: 10px;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+      color: #fff;
     }
 
-    p {
-      font-size: 1.2em;
-      color: #444;
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
       margin-bottom: 20px;
+      font-style: italic;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
     }
 
-    .cat-container {
+    /* ===== CARD STYLES ===== */
+    .card-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+      margin: 30px 0;
+    }
+
+    .card {
+      width: 400px;
+      height: 500px;
       position: relative;
-      margin: 30px auto;
-      width: 300px;
-      height: 300px;
+      transform-style: preserve-3d;
+      transition: transform 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
     }
 
-    .cat-holding-sign {
+    .card:hover {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-    }
-
-    .buttons {
-      margin-top: 20px;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
       display: flex;
-      gap: 20px;
+      flex-direction: column;
+      align-items: center;
       justify-content: center;
+      padding: 30px;
+      overflow: hidden;
     }
 
-    button {
-      font-size: 1.1em;
-      padding: 12px 24px;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: all 0.2s ease;
+    .card-front {
+      background: linear-gradient(135deg, #ffc0cb, #ff91a4);
+      border: 12px solid white;
     }
 
-    #yes {
-      background: #ff5fa2;
+    .card-back {
+      background: linear-gradient(135deg, #ffc0cb, #ff91a4);
+      border: 12px solid white;
+      transform: rotateY(180deg);
+      justify-content: flex-start;
+      padding-top: 50px;
+    }
+
+    .card-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .heart-icon {
+      font-size: 80px;
+      margin: 20px 0;
       color: white;
+      animation: heartbeat 1.5s infinite;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
     }
 
-    #yes:hover {
-      transform: scale(1.1);
-      background: #ff7bbd;
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
     }
 
-    #no {
-      background: white;
-      border: 2px solid #ff5fa2;
-      color: #ff5fa2;
-      position: relative;
+    .message-container {
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      padding: 20px;
+      margin-top: 20px;
+      width: 100%;
+      max-height: 320px;
+      overflow-y: auto;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    #no:hover {
-      background: #fff0f5;
+    .message {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      text-align: center;
+      color: #333;
+      font-weight: 400;
     }
 
-    .hidden {
-      display: none;
-    }
-
-    .confetti {
-      position: fixed;
-      top: 0;
-      left: 0;
+    /* ===== DECORATIONS ===== */
+    .hearts-container,
+    .flowers-container {
+      position: absolute;
       width: 100%;
       height: 100%;
       pointer-events: none;
-      overflow: hidden;
-      z-index: 10;
-    }
-
-    .confetti span {
-      position: absolute;
-      display: block;
-      width: 10px;
-      height: 10px;
-      background: hsl(calc(360 * var(--hue)), 90%, 60%);
-      top: 0;
-      animation: fall 3s linear infinite;
-    }
-
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(720deg);
-      }
-    }
-
-    /* Dancing cat animation */
-    .dancing-cat-container {
-      position: relative;
-      width: 400px;
-      height: 400px;
-      margin: 0 auto;
-    }
-
-    .happy-dancing-cat {
-      width: 100%;
-      height: 100%;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 C70,10 85,25 85,45 C85,65 70,80 50,80 C30,80 15,65 15,45 C15,25 30,10 50,10 Z" fill="%23FFB6C1"/><circle cx="40" cy="40" r="5" fill="%23333"/><circle cx="60" cy="40" r="5" fill="%23333"/><path d="M45,55 Q50,65 55,55" stroke="%23333" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M30,20 L25,15 M70,20 L75,15" stroke="%23333" stroke-width="2"/><path d="M35,70 L40,80 L45,70 L50,80 L55,70 L60,80 L65,70" stroke="%23333" stroke-width="2" fill="none"/></svg>');
-      background-repeat: no-repeat;
-      background-position: center;
-      animation: happy-dance 0.8s infinite alternate ease-in-out;
-    }
-
-    .flower {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><circle cx="15" cy="15" r="10" fill="%23FF69B4"/><circle cx="10" cy="10" r="5" fill="%23FFB6C1"/><circle cx="20" cy="10" r="5" fill="%23FFB6C1"/><circle cx="10" cy="20" r="5" fill="%23FFB6C1"/><circle cx="20" cy="20" r="5" fill="%23FFB6C1"/></svg>');
-      background-repeat: no-repeat;
-      animation: float 3s infinite ease-in-out;
+      z-index: 1;
     }
 
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%23FF5FA2"/></svg>');
-      background-repeat: no-repeat;
-      animation: float 2s infinite ease-in-out;
-    }
-
-    .sparkle {
-      position: absolute;
-      width: 15px;
-      height: 15px;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.6 9.18l2.22-2.22-1.42-1.42-2.22 2.22 1.42 1.42zM12 18.36l-3.6-3.6 7.2-7.2 3.6 3.6-7.2 7.2zM7.06 13.14L4.84 10.92l-1.42 1.42 2.22 2.22 1.42-1.42zM19.78 10.92l-2.22 2.22-1.42-1.42 2.22-2.22 1.42 1.42zM12 5.64l3.6 3.6-7.2 7.2-3.6-3.6 7.2-7.2z" fill="%23FFD700"/></svg>');
-      background-repeat: no-repeat;
-      animation: sparkle 1.5s infinite ease-in-out;
-    }
-
-    @keyframes happy-dance {
-      0% { 
-        transform: translateY(0) rotate(-8deg) scale(1);
-      }
-      25% {
-        transform: translateY(-15px) rotate(5deg) scale(1.05);
-      }
-      50% {
-        transform: translateY(-10px) rotate(-5deg) scale(1.02);
-      }
-      75% {
-        transform: translateY(-20px) rotate(8deg) scale(1.08);
-      }
-      100% { 
-        transform: translateY(-5px) rotate(-8deg) scale(1.05);
-      }
+      font-size: 24px;
+      color: white;
+      opacity: 0.7;
+      animation: float 6s infinite ease-in-out;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     }
 
     @keyframes float {
-      0%, 100% { 
-        transform: translateY(0) rotate(0deg) scale(1);
-        opacity: 0.8;
-      }
-      50% { 
-        transform: translateY(-25px) rotate(15deg) scale(1.1);
-        opacity: 1;
-      }
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.7; }
+      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+      100% { transform: translateY(0) rotate(360deg); opacity: 0.7; }
     }
 
-    @keyframes sparkle {
-      0%, 100% { 
-        transform: scale(1) rotate(0deg);
-        opacity: 0;
-      }
-      50% { 
-        transform: scale(1.3) rotate(180deg);
-        opacity: 1;
-      }
+    .flower {
+      position: absolute;
+      font-size: 40px;
+      color: #ff4d6d;
+      opacity: 0.8;
+      animation: sway 8s infinite ease-in-out;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
     }
 
-    .message-content {
+    @keyframes sway {
+      0% { transform: translateX(0) rotate(0deg); }
+      50% { transform: translateX(10px) rotate(5deg); }
+      100% { transform: translateX(0) rotate(0deg); }
+    }
+
+    /* ===== PHOTO GALLERY ===== */
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0;
+      flex-wrap: wrap;
+    }
+
+    .photo-frame {
+      width: 150px;
+      height: 150px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ff69b4;
+      font-size: 2rem;
+    }
+
+    .photo-frame:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== MEMORIES SECTION ===== */
+    .memories {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      padding: 25px;
+      margin: 30px 0;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .memories h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .memory-list {
+      text-align: left;
+      list-style-type: none;
+    }
+
+    .memory-list li {
+      margin-bottom: 15px;
+      padding-left: 25px;
       position: relative;
-      z-index: 5;
+      font-size: 1.1rem;
     }
-    
-    .happy-text {
-      font-size: 1.5em;
-      color: #ff5fa2;
-      margin-top: 20px;
-      animation: text-bounce 1s infinite alternate;
+
+    .memory-list li:before {
+      content: "💖";
+      position: absolute;
+      left: 0;
     }
-    
-    @keyframes text-bounce {
+
+    /* ===== COUNTDOWN ===== */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .countdown-item {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      padding: 15px;
+      min-width: 80px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .countdown-value {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .countdown-label {
+      font-size: 0.9rem;
+      margin-top: 5px;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
       0% { transform: scale(1); }
-      100% { transform: scale(1.1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    /* ===== RESPONSIVE STYLES ===== */
+    @media (max-width: 768px) {
+      .gallery {
+        gap: 10px;
+      }
+      
+      .photo-frame {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .countdown {
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        width: 320px;
+        height: 450px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+      }
+
+      .card-title {
+        font-size: 2rem;
+      }
+
+      .heart-icon {
+        font-size: 60px;
+      }
+      
+      .photo-frame {
+        width: 100px;
+        height: 100px;
+        font-size: 1.5rem;
+      }
+      
+      .memories {
+        padding: 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>To my labidabs 💗</h1>
-    <p>Will you be my date? 🥺👉👈</p>
-    
-    <div class="cat-container">
-      <!-- Cat holding a sign with the question -->
-      <svg class="cat-holding-sign" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <!-- Cat body -->
-        <ellipse cx="100" cy="120" rx="60" ry="50" fill="#FFB6C1" />
-        
-        <!-- Cat head -->
-        <circle cx="100" cy="70" r="40" fill="#FFB6C1" />
-        
-        <!-- Ears -->
-        <polygon points="80,40 70,20 90,30" fill="#FFB6C1" />
-        <polygon points="120,40 130,20 110,30" fill="#FFB6C1" />
-        
-        <!-- Inner ears -->
-        <polygon points="82,38 75,25 88,32" fill="#FFD1DC" />
-        <polygon points="118,38 125,25 112,32" fill="#FFD1DC" />
-        
-        <!-- Eyes -->
-        <ellipse cx="90" cy="65" rx="8" ry="10" fill="#333" />
-        <ellipse cx="110" cy="65" rx="8" ry="10" fill="#333" />
-        
-        <!-- Eye highlights -->
-        <circle cx="92" cy="62" r="2" fill="white" />
-        <circle cx="108" cy="62" r="2" fill="white" />
-        
-        <!-- Nose -->
-        <polygon points="100,75 95,80 105,80" fill="#FF69B4" />
-        
-        <!-- Mouth -->
-        <path d="M95 85 Q100 90 105 85" stroke="#333" stroke-width="2" fill="none" />
-        
-        <!-- Whiskers -->
-        <line x1="70" y1="70" x2="85" y2="72" stroke="#333" stroke-width="2" />
-        <line x1="70" y1="75" x2="85" y2="77" stroke="#333" stroke-width="2" />
-        <line x1="130" y1="70" x2="115" y2="72" stroke="#333" stroke-width="2" />
-        <line x1="130" y1="75" x2="115" y2="77" stroke="#333" stroke-width="2" />
-        
-        <!-- Paws holding sign -->
-        <ellipse cx="60" cy="130" rx="15" ry="10" fill="#FFB6C1" />
-        <ellipse cx="140" cy="130" rx="15" ry="10" fill="#FFB6C1" />
-        
-        <!-- Sign -->
-        <rect x="50" y="90" width="100" height="50" rx="10" fill="#FFE4E6" stroke="#FF5FA2" stroke-width="3" />
-        <text x="100" y="115" text-anchor="middle" font-family="Poppins" font-size="12" fill="#FF5FA2">Date with me?</text>
-        <text x="100" y="130" text-anchor="middle" font-family="Poppins" font-size="10" fill="#FF5FA2">🥺👉👈</text>
-      </svg>
-    </div>
-
-    <div class="buttons">
-      <button id="yes">Yes 😚</button>
-      <button id="no">No 😢</button>
+  <!-- ===== INTRO PAGE ===== -->
+  <div id="intro-page" class="intro-page">
+    <div class="intro-content">
+      <h1>Happy Monthsary My Love 💕</h1>
+      <p>Click below to open something I made with love just for you!</p>
+      <button id="openBtn">Open 💌</button>
     </div>
   </div>
 
-  <div id="message" class="hidden">
-    <div class="message-content">
-      <h1>YAAAY!!! 🎉💞</h1>
-      <p>I knew you'd say yes! Can't wait for our bembang HAHAHHAHAHAHHAHAHAHA 💕</p>
-      
-      <div class="happy-text">So happy! 🥰</div>
-      
-      <div class="dancing-cat-container">
-        <div class="happy-dancing-cat"></div>
-        <!-- Flowers, hearts and sparkles will be added by JavaScript -->
+  <!-- ===== MAIN CONTENT ===== -->
+  <div class="container" id="main-content">
+    <header>
+      <h1>Happy Monthsary!</h1>
+      <p class="subtitle">This is not much i hope maganahan ka ani HAHAHHA chaka raba ni</p>
+    </header>
+
+    <!-- Countdown Timer -->
+    <div class="countdown">
+      <div class="countdown-item">
+        <div class="countdown-value" id="months">0</div>
+        <div class="countdown-label">Months</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="days">0</div>
+        <div class="countdown-label">Days</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="hours">0</div>
+        <div class="countdown-label">Hours</div>
+      </div>
+      <div class="countdown-item">
+        <div class="countdown-value" id="minutes">0</div>
+        <div class="countdown-label">Minutes</div>
       </div>
     </div>
+
+    <!-- Photo Gallery -->
+    <div class="gallery">
+      <div class="photo-frame">
+        <i class="fas fa-heart"></i>
+      </div>
+      <div class="photo-frame">
+        <i class="fas fa-kiss-wink-heart"></i>
+      </div>
+      <div class="photo-frame">
+        <i class="fas fa-heartbeat"></i>
+      </div>
+      <div class="photo-frame">
+        <i class="fas fa-star"></i>
+      </div>
+    </div>
+
+    <!-- Card -->
+    <div class="card-wrapper">
+      <div class="card">
+        <div class="card-front">
+          <div class="hearts-container" id="front-hearts"></div>
+          <div class="flowers-container" id="front-flowers"></div>
+
+          <div class="heart-icon">❤️</div>
+          <h2 class="card-title">To My Love</h2>
+          <p>Hover or tap to open</p>
+        </div>
+
+        <div class="card-back">
+          <div class="hearts-container" id="back-hearts"></div>
+          <div class="flowers-container" id="back-flowers"></div>
+
+          <h2 class="card-title">Always be reminded lablab kang bantuy </h2>
+          <div class="message-container">
+            <div class="message" id="custom-message">
+              Hello my loveydovey,<br><br>
+              Another month has passed, and our bonds are just getting stronger.
+              Every moment with you is a precious memory I'll cherish forever.<br><br>
+              You make my world more brighter and lighter.Usa ra jd ako masulti loveyy love kaau tka and thank you sa pag abut sa akong life, forever tkang e treasure my ice cream girl <3 <br><br>
+              With all my love,<br>
+              <strong>Franz 💖</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Memories Section -->
+    <div class="memories">
+      <h2>Our Beautiful Memories</h2>
+      <ul class="memory-list">
+        <li>The first time we met maldita kayka HAHAHHA</li>
+        <li>Our first date that kay unta matinudd na HAHAAHHA</li>
+        <li>All the laughter we've shared together</li>
+        <li>The way you make every day special</li>
+        <li>Looking forward to many more months together</li>
+      </ul>
+    </div>
+
+    <footer>
+      Made with love and ano HEHEH
+    </footer>
   </div>
 
-  <div class="confetti" id="confetti"></div>
+  <!-- ===== OPTIONAL MUSIC ===== -->
+  <audio id="bg-music" loop>
+    <source src="https://assets.mixkit.co/music/preview/mixkit-happy-times-158.mp3" type="audio/mpeg">
+  </audio>
 
   <script>
-    const yes = document.getElementById("yes");
-    const no = document.getElementById("no");
-    const message = document.getElementById("message");
-    const confetti = document.getElementById("confetti");
+    // Intro transition
+    document.getElementById('openBtn').addEventListener('click', () => {
+      const intro = document.getElementById('intro-page');
+      const main = document.getElementById('main-content');
+      const music = document.getElementById('bg-music');
 
-    yes.addEventListener("click", () => {
-      document.querySelector('.container').style.display = 'none';
-      message.classList.remove('hidden');
-      createConfetti();
-      createDancingScene();
+      intro.style.opacity = '0';
+      setTimeout(() => intro.style.display = 'none', 1000);
+      main.classList.add('active');
+
+      // Play music if available
+      if (music) {
+        music.volume = 0.3;
+        music.play().catch(e => console.log("Autoplay prevented:", e));
+      }
     });
 
-    no.addEventListener("mouseover", moveNoButton);
-
-    function moveNoButton() {
-      const x = Math.random() * (window.innerWidth - no.offsetWidth);
-      const y = Math.random() * (window.innerHeight - no.offsetHeight);
-      no.style.position = "absolute";
-      no.style.left = `${x}px`;
-      no.style.top = `${y}px`;
-    }
-
-    function createConfetti() {
-      for (let i = 0; i < 150; i++) {
-        const span = document.createElement("span");
-        span.style.setProperty("--hue", Math.random());
-        span.style.left = Math.random() * 100 + "%";
-        span.style.animationDuration = 2 + Math.random() * 3 + "s";
-        confetti.appendChild(span);
-        setTimeout(() => span.remove(), 3000);
-      }
-    }
-
-    function createDancingScene() {
-      const container = document.querySelector('.dancing-cat-container');
+    // Countdown timer - Fixed to calculate from February 28, 2025 to today
+    function updateCountdown() {
+      // Set the start date to February 28, 2025
+      const startDate = new Date(2025, 1, 28); // February 28, 2025 (month is 0-indexed)
+      const now = new Date();
       
-      // Create flowers
-      for (let i = 0; i < 20; i++) {
-        const flower = document.createElement('div');
-        flower.className = 'flower';
-        flower.style.left = Math.random() * 100 + '%';
-        flower.style.top = Math.random() * 100 + '%';
-        flower.style.animationDelay = Math.random() * 2 + 's';
-        container.appendChild(flower);
-      }
+      // Calculate total difference in milliseconds
+      const diffTime = Math.abs(now - startDate);
       
-      // Create hearts
-      for (let i = 0; i < 25; i++) {
+      // Calculate total days
+      const totalDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      
+      // Calculate months and remaining days
+      const months = Math.floor(totalDays / 30);
+      const days = totalDays % 30;
+      
+      // Calculate hours and minutes
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      
+      // Update display
+      document.getElementById('months').textContent = months;
+      document.getElementById('days').textContent = days;
+      document.getElementById('hours').textContent = hours;
+      document.getElementById('minutes').textContent = minutes;
+    }
+    
+    // Update countdown immediately and then every minute
+    updateCountdown();
+    setInterval(updateCountdown, 60000);
+
+    // Floating hearts & flowers
+    function createHearts(containerId, count) {
+      const container = document.getElementById(containerId);
+      for (let i = 0; i < count; i++) {
         const heart = document.createElement('div');
-        heart.className = 'heart';
+        heart.classList.add('heart');
+        heart.innerHTML = '❤';
         heart.style.left = Math.random() * 100 + '%';
         heart.style.top = Math.random() * 100 + '%';
-        heart.style.animationDelay = Math.random() * 2 + 's';
+        heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+        heart.style.animationDelay = Math.random() * 5 + 's';
         container.appendChild(heart);
       }
-      
-      // Create sparkles
-      for (let i = 0; i < 15; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.className = 'sparkle';
-        sparkle.style.left = Math.random() * 100 + '%';
-        sparkle.style.top = Math.random() * 100 + '%';
-        sparkle.style.animationDelay = Math.random() * 2 + 's';
-        container.appendChild(sparkle);
+    }
+
+    function createFlowers(containerId, count) {
+      const container = document.getElementById(containerId);
+      for (let i = 0; i < count; i++) {
+        const flower = document.createElement('div');
+        flower.classList.add('flower');
+        flower.innerHTML = '❀';
+        flower.style.left = Math.random() * 100 + '%';
+        flower.style.bottom = Math.random() * 30 + 'px';
+        flower.style.fontSize = (Math.random() * 20 + 30) + 'px';
+        flower.style.animationDelay = Math.random() * 5 + 's';
+        container.appendChild(flower);
       }
     }
+
+    window.onload = function() {
+      createHearts('front-hearts', 20);
+      createHearts('back-hearts', 20);
+      createFlowers('front-flowers', 6);
+      createFlowers('back-flowers', 6);
+    };
   </script>
 </body>
 </html>
